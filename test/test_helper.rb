@@ -1,6 +1,7 @@
 require 'panatizer'
 require 'minitest/autorun'
 require 'rack/mock'
+require 'mocha/setup'
 
 class MiniTest::Unit::TestCase
   def self.test(test_description, &block)

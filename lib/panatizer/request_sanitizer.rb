@@ -1,3 +1,5 @@
+require 'uri'
+
 module Panatizer
   class RequestSanitizer
     attr_reader :strategized_routes
@@ -10,13 +12,18 @@ module Panatizer
     
     def call(env)
       request = Rack::Request.new(env)
-      execute_strategies(request) if has_strategy?(request.path)
+      request = execute_strategies(request) if has_strategy?(request.path)
+      env["QUERY_STRING"] = encode_to_query_string(request.params)
       @app.call(env)
     end
     
     def execute_strategies(request)
       strategies = @strategized_routes[request.path]
-      strategies.each { |strategy| strategy.call(request)}
+      strategies.each { |strategy| 
+        strategy = strategy.is_a?(Class) ? strategy.new : strategy
+        strategy.call(request)
+      }
+      request
     end
     
     def has_strategy?(route)
@@ -25,6 +32,10 @@ module Panatizer
     
     def emit_warning
       puts "Panatizer::RequestSanitizer initialized without sanitization strategies. Middleware is now a no-op"
+    end
+    
+    def encode_to_query_string(params)
+      URI.encode(params.map{|k,v| "#{k}=#{v}"}.join('&'))
     end
   end
 end

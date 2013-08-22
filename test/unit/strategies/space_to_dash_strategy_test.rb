@@ -3,7 +3,7 @@ require 'rack/mock'
 
 module Panatizer
   module Strategies
-    class SpaceToDashStrategyTest < MiniTest::Unit::TestCase
+    class SpaceToDashStrategyTest < Panatizer::UnitTest
       
       def setup
         @sanitizer = SpaceToDashStrategy.new

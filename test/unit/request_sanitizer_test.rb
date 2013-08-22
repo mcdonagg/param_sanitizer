@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 
 module Panatizer
   
@@ -7,7 +7,7 @@ module Panatizer
     end
   end
   
-  class RequestSanitizerTest < MiniTest::Unit::TestCase
+  class RequestSanitizerTest < Panatizer::UnitTest
     def setup
       @app = stub(:call => [200, {}, []])
       @strategies = {

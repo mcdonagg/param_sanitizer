@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Panatizer
   module Strategies
-    class StripSchemeStrategyTest < MiniTest::Unit::TestCase
+    class StripSchemeStrategyTest < Panatizer::UnitTest
       
       def setup
         @sanitizer = StripSchemeStrategy.new

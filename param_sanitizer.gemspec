@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'param_sanitizer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ParamSanitizer"
+  spec.name          = "param_sanitizer"
   spec.version       = ParamSanitizer::VERSION
   spec.authors       = ["Shopify"]
   spec.email         = ["gems@shopify.com"]

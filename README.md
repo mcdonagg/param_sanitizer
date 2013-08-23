@@ -41,3 +41,17 @@ class TheMiddleware
   end
 end
 ```
+
+#Simple config.ru file for sanity check
+```ruby
+require 'param_sanitizer'
+
+sanitized_routes = {
+  '/login' => [SpaceToDashStrategy]
+}
+
+app = lambda { |env| [200, {'Content-Type' => 'text/plain'}, [env['PATH_INFO'], env['QUERY_STRING']]] }
+
+middleware = ParamSanitizer::RequestSanitizer.new(app, sanitized_routes)
+run middleware
+```

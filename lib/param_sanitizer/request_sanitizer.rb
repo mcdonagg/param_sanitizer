@@ -1,6 +1,6 @@
 require 'uri'
 
-module Panatizer
+module ParamSanitizer
   class RequestSanitizer
     attr_reader :strategized_routes
     
@@ -31,7 +31,7 @@ module Panatizer
     end
     
     def emit_warning
-      puts "Panatizer::RequestSanitizer initialized without sanitization strategies. Middleware is now a no-op"
+      puts "ParamSanitizer::RequestSanitizer initialized without sanitization strategies. Middleware is now a no-op"
     end
     
     def encode_to_query_string(params)

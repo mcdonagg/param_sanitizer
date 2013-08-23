@@ -1,13 +1,13 @@
 require 'unit/test_helper'
 
-module Panatizer
+module ParamSanitizer
   
   class RequestSanitizerDouble < RequestSanitizer
     def emit_warning
     end
   end
   
-  class RequestSanitizerTest < Panatizer::UnitTest
+  class RequestSanitizerTest < ParamSanitizer::UnitTest
     def setup
       @app = stub(:call => [200, {}, []])
       @strategies = {

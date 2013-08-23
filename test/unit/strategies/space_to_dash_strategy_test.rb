@@ -1,9 +1,8 @@
-require 'test_helper'
-require 'rack/mock'
+require 'unit/test_helper'
 
-module Panatizer
+module ParamSanitizer
   module Strategies
-    class SpaceToDashStrategyTest < Panatizer::UnitTest
+    class SpaceToDashStrategyTest < ParamSanitizer::UnitTest
       
       def setup
         @sanitizer = SpaceToDashStrategy.new

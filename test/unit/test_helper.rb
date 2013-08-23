@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Panatizer::UnitTest < Panatizer::TestCase
+class ParamSanitizer::UnitTest < ParamSanitizer::TestCase
   
   def app(sanitizer, expectation)
     lambda { |env|

@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'panatizer/version'
+require 'param_sanitizer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "panatizer"
-  spec.version       = Panatizer::VERSION
+  spec.name          = "ParamSanitizer"
+  spec.version       = ParamSanitizer::VERSION
   spec.authors       = ["Shopify"]
   spec.email         = ["gems@shopify.com"]
   spec.description   = %q{foo}

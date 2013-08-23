@@ -1,9 +1,9 @@
-module Panatizer
+module ParamSanitizer
   module Strategies
-    class StripSchemeStrategy      
+    class SpaceToDashStrategy      
       def call(request)
         request.params.each do |key, value|
-          request.params[key] = value.gsub(/\A(\w*)\:\/\//, '')
+          request.params[key] = value.strip.gsub(' ', '-') if value
         end
       end
     end

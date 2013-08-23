@@ -1,4 +1,4 @@
-module Panatizer
+module ParamSanitizer
   module Strategies
     class NoOpStrategy
       def call(request)

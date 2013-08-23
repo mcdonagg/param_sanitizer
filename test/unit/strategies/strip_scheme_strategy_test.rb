@@ -1,8 +1,8 @@
-require 'test_helper'
+require 'unit/test_helper'
 
-module Panatizer
+module ParamSanitizer
   module Strategies
-    class StripSchemeStrategyTest < Panatizer::UnitTest
+    class StripSchemeStrategyTest < ParamSanitizer::UnitTest
       
       def setup
         @sanitizer = StripSchemeStrategy.new

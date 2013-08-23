@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in panatizer.gemspec
+# Specify your gem's dependencies in ParamSanitizer.gemspec
 gemspec

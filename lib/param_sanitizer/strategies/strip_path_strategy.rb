@@ -1,4 +1,4 @@
-module Panatizer
+module ParamSanitizer
   module Strategies
     class StripPathStrategy      
       def call(request)

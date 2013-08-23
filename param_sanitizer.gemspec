@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = ParamSanitizer::VERSION
   spec.authors       = ["Shopify"]
   spec.email         = ["gems@shopify.com"]
-  spec.description   = %q{foo}
-  spec.summary       = %q{bar}
-  spec.homepage      = ""
+  spec.description   = %q{Simple middleware for cleaning up possibly bad requests on selected endpoints}
+  spec.summary       = %q{Simple middleware for cleaning up possibly bad requests on selected endpoints}
+  spec.homepage      = "https://github.com/shopify/param_sanitizer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

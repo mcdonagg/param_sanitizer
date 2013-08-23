@@ -1,12 +1,24 @@
+# Description
+
+Simple Middleware for cleaning up possibly bad requests on selected endpoints
+
+# Authors
+
+* Chris Saunders (http://christophersaunders.ca)
+* Yagnik Khanna (http://github.com/yagnik)
+
 # Usage
 
+```ruby
 routes_and_strategies = {
   '/login' => [SpaceToDashStrategy]
 }
 use TheMiddleware, routes_and_strategies
+```
 
 # Implementation
 
+```ruby
 class TheMiddleware
   def initialize(app, *args)
     if args.last.is_a?(Hash)
@@ -28,3 +40,4 @@ class TheMiddleware
     end
   end
 end
+```

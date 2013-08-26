@@ -42,7 +42,7 @@ module ParamSanitizer
       if strategy.respond_to?(:call) then strategy
       elsif strategy.respond_to?(:new) then strategy.new
       elsif strategy.is_a?(Symbol) then ParamSanitizer::Strategies.const_get("#{strategy}Strategy").new
-      else raise ArgumentError
+      else raise ArgumentError.new "#{strategy.to_s} does not support 'call'!"
       end
     end
   end

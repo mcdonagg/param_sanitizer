@@ -7,6 +7,16 @@ module ParamSanitizer
     end
   end
   
+  class Tester < ParamSanitizer::UnitTest
+    def initialize
+      @val = 0
+    end
+    def call(request)
+      @val += 1
+      assert_equal 1, @val
+    end
+  end
+
   class RequestSanitizerTest < ParamSanitizer::UnitTest
     def setup
       @app = stub(:call => [200, {}, []])
@@ -46,7 +56,32 @@ module ParamSanitizer
       Rack::MockRequest.new(middleware).get('/login')
       assert_equal 2, called
     end
-    
+
+    test "execute_strategies should execute a proc" do
+      called = 0
+      @strategies["/login"] = [lambda{|request| called += 1}]
+      Rack::MockRequest.new(middleware).get('/login')
+      assert_equal 1, called
+    end
+
+    test "execute_strategies should execute a class" do
+      @strategies["/login"] = [Tester]
+      Rack::MockRequest.new(middleware).get('/login')
+    end
+
+    test "execute_strategies should execute a symbol" do
+      @strategies["/login"] = [:SpaceToDash]
+      ParamSanitizer::Strategies::SpaceToDashStrategy.any_instance.expects(:call)
+      Rack::MockRequest.new(middleware).get('/login')
+    end
+
+    test "execute strategies should raise ArgumentError if incorrect type is passed in" do
+      @strategies["/login"] = ["SpaceToDash"]
+      assert_raises ArgumentError do
+        Rack::MockRequest.new(middleware).get('/login')
+      end
+    end
+
     def middleware
       RequestSanitizerDouble.new(@app, @strategies)
     end

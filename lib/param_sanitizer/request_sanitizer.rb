@@ -19,9 +19,9 @@ module ParamSanitizer
     
     def execute_strategies(request)
       strategies = @strategized_routes[request.path]
-      strategies.each { |strategy| 
-        strategy = strategy.is_a?(Class) ? strategy.new : strategy
-        strategy.call(request)
+      strategies.each { |strategy|
+        instance = build(strategy)
+        instance.call(request) if instance.respond_to? :call
       }
       request
     end
@@ -36,6 +36,14 @@ module ParamSanitizer
     
     def encode_to_query_string(params)
       URI.encode(params.map{|k,v| "#{k}=#{v}"}.join('&'))
+    end
+
+    def build(strategy)
+      if strategy.respond_to?(:call) then strategy
+      elsif strategy.respond_to?(:new) then strategy.new
+      elsif strategy.is_a?(Symbol) then ParamSanitizer::Strategies.const_get("#{strategy}Strategy").new
+      else raise ArgumentError.new "#{strategy.to_s} does not support 'call'!"
+      end
     end
   end
 end

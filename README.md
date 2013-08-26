@@ -26,10 +26,13 @@ In `config/application.rb`, add
 
 ```ruby
 routes_and_strategies = {
-  '/login' => [SpaceToDashStrategy]
+  '/login' => [:SpaceToDash]
 }
 config.middleware.use 'ParamSanitizer::RequestSanitizer', routes_and_strategies
 ```
+
+The array can accept a class, a proc, a symbol (inside the ParamSanitizer::Strategies namespace) 
+or any object that responds to call
 
 ## Contributing
 

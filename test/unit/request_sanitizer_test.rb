@@ -74,7 +74,14 @@ module ParamSanitizer
       ParamSanitizer::Strategies::SpaceToDashStrategy.any_instance.expects(:call)
       Rack::MockRequest.new(middleware).get('/login')
     end
-    
+
+    test "execute strategies should raise ArgumentError if incorrect type is passed in" do
+      @strategies["/login"] = ["SpaceToDash"]
+      assert_raises ArgumentError do
+        Rack::MockRequest.new(middleware).get('/login')
+      end
+    end
+
     def middleware
       RequestSanitizerDouble.new(@app, @strategies)
     end

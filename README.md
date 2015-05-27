@@ -1,6 +1,6 @@
 ## Description
 
-Simple Middleware for cleaning up possibly bad requests on selected endpoints
+Simple middleware for cleaning up possibly bad requests on selected endpoints
 
 ## Authors
 
@@ -10,15 +10,15 @@ Simple Middleware for cleaning up possibly bad requests on selected endpoints
 ## Installation 
 Add this line to your application's Gemfile:
 
-gem 'rack-encoding-validation'
+`gem 'param_sanitizer'`
 
 And then execute:
 
-$ bundle
+`$ bundle`
 
 Or install it yourself as:
 
-$ gem install rack-encoding-validation
+`$ gem install param_sanitizer`
 
 ## Usage in Rails
 
